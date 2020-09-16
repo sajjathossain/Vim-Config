@@ -1,16 +1,18 @@
 # Vim-Config (only for vim not neovim)
 * This is the vim config file. If you're a new vim user then it will help you to work in vim better than before.
 
+
+## Demo
 ![Demo](./images/demo.jpg)
 
 ## Pre-requisites
-* [Vim]
-* [Git Bash]
+* [Vim](#vim)
+* [Git Bash](#git-bash)
 
 
 ### First Download and Install Vim
 ```
-https://www.vim.org/download.php
+[Vim](https://www.vim.org/download.php)
 ```
 
 ### Run the Below Command
