@@ -66,4 +66,11 @@ Run The Given Vim Command
 13. l (acts as right arrow -> )
 14. k (acts as up arrow ^ )
 15. j (acts as right arrow v )
+16. Ctrl-n (nord tree)
+17. :e (edit file)
+18. Ctrl-w-w (goto next window)
+19. :sp (split screen horizontally)
+20. :vsp (split screen vertically)
+21. /word/words (word search)
+22. :buffers (to see all buffers that have been performed)
 ```
