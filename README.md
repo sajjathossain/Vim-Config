@@ -48,3 +48,22 @@ Run The Given Vim Command
 Run The Given Vim Command
 :PlugUpdate
 ```
+
+### [Some Useful Vim Commands/Shortcuts]
+```
+1. Press esc to enter normal mode from insert mode
+2. :q (quit)
+3. :wq (save and quit)
+4. :q! (quit without saving)
+5. :u (undo) [More About Undo](https://vim.fandom.com/wiki/Undo_and_Redo)
+6. Ctrl-r (redo)
+7. tn (New Tab)
+8. tj (Previous Tab)
+9. tk (Next Tab)
+10. th (First Tab)
+11. tl (Last Tab)
+12. h (acts as left arrow <- )
+13. l (acts as right arrow -> )
+14. k (acts as up arrow ^ )
+15. j (acts as right arrow v )
+```
