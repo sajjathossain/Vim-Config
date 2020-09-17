@@ -49,7 +49,7 @@ Run The Given Vim Command
 :PlugUpdate
 ```
 
-### [Some Useful Vim Commands/Shortcuts](#Some Useful Vim Commands/Shortcuts)
+### [Some Useful Vim Commands/Shortcuts](#some-useful-vim-commands-/-shortcuts)
 ```
 1. Press esc to enter normal mode from insert mode
 2. :q (quit)
