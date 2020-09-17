@@ -11,7 +11,7 @@
 
 
 ### First Download and Install Vim
-[Vim](https://www.vim.org/download.php)
+[Download Vim](https://www.vim.org/download.php)
 
 ### Run the Below Command
 * Unix
