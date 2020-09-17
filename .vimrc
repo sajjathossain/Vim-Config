@@ -1,6 +1,15 @@
 set nu
+"Mouse Input
+set mouse=a
+set hlsearch
+set background=dark
+"Provide tab-completion for all file-related tasks
+set path+=**
+"Display all matching files when tab complete
+set wildmenu
 "Plug-ins
 call plug#begin('~/.vim/plugged')
+
 " Tools
     Plug 'junegunn/goyo.vim'
     Plug 'vifm/vifm.vim'
@@ -8,6 +17,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'ctrlpvim/ctrlp.vim'
 " Syntax
+    Plug 'emmetio/emmet'
     Plug 'tpope/vim-markdown'
     Plug 'ap/vim-css-color' "Displays a preview of colors with CSS 
     Plug 'vim-scripts/fountain.vim'
@@ -17,8 +27,55 @@ call plug#begin('~/.vim/plugged')
     Plug 'NLKNguyen/papercolor-theme'
     Plug 'ajh17/Spacegray.vim'
     Plug 'chriskempson/base16-vim'
+    Plug 'scrooloose/nerdtree' "NerdTree command :NERDTree
+    
+    Plug 'mattn/emmet-vim' "Emmet
 call plug#end() 
- 
+" multi tab
+au VimEnter no_plugins.vim setl window=66
+au VimEnter no_plugins.vim normal 8Gzz
+au VimEnter no_plugins.vim command! GO normal M17jzzH
+au VimEnter no_plugins.vim command! BACK normal M17kzzH
+au VimEnter no_plugins.vim command! RUN execute getline(".")
+au VimEnter no_plugins.vim unmap H
+au VimEnter no_plugins.vim unmap L
+" au VimEnter no_plugins.vim nnoremap ^f :GO<CR>
+" au VimEnter no_plugins.vim nnoremap ^b :BACK<CR>
+" Maping nerdtree
+:map <C-n> :NERDTree
+"No Wrap
+set nowrap
+
+""
+"multi tab
+nnoremap tn  :tabnew<Space>
+
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap th  :tabfirst<CR>
+nnoremap tl  :tablast<CR>
+""
+set noerrorbells
+"Prettier
+let g:prettier#config#single_quote = "false"
+let g:prettier#config#trailing_comma = "none"
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+
+ " FILE BROWSING:
+ " Tweaks for browsing
+ let g:netrw_banner=0        " disable annoying banner
+ let g:netrw_browse_split=4  " open in prior window
+ let g:netrw_altv=1          " open splits to the right
+ let g:netrw_liststyle=3     " tree view
+ let g:netrw_list_hide=netrw_gitignore#Hide()
+ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+ " NOW WE CAN:
+ " - :edit a folder to open a file browser
+ " - <CR>/v/t to open in an h-split/v-split/tab
+ " - check |netrw-browse-maps| for more mappings
+
 "General Settings
 set encoding=UTF-8
 filetype plugin indent on  "Enabling Plugin & Indent
