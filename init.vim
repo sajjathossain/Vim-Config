@@ -20,17 +20,29 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   let g:coc_global_extensions = ['coc-css', 'coc-emmet', 'coc-eslint', 'coc-explorer', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tabnine', 'coc-tsserver', 'coc-git', 'coc-tailwindcss' ]
   Plug 'vim-scripts/AutoClose'
-
+  Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
-
-" custom keybindings
-nnoremap <SPACE> <Nop>
-let mapleader=" "
 
 set t_Co=256
 syntax on
 colorscheme onedark
+
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+" custom keybindings
+"
+" nerdtree configurations
+nnoremap <leader>ft :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+" some vim commands
+" save file
+nnoremap <leader>fs :w<CR>
+" save and quit
+nnoremap <leader>qs :wq<CR>
+" quit without saving
+nnoremap <leader>qq :q!<CR>
+
 
 " vim airline configurations
 " air-line
@@ -67,15 +79,3 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-
-" nerdtree configurations
-nnoremap <leader>ft :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
-" some vim commands
-" save file
-nnoremap <leader>fs :w<CR>
-" save and quit
-nnoremap <leader>qs :wq<CR>
-" quit without saving
-nnoremap <leader>qq :q!<CR>
