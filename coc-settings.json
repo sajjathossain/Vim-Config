@@ -1,8 +1,8 @@
 {
   "prettier.semi": true,
   "prettier.tabWidth": 2,
-  "prettier.singleQuote": false,
+  "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
   "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "javascript", "javascriptreact"],
-  "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snips"
 }

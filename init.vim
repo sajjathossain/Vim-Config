@@ -6,12 +6,15 @@ set nobackup
 
 call plug#begin('~/.config/nvim/plugged')
 
-	" theme & plugins
+  " theme & plugins
   Plug 'joshdick/onedark.vim'
   Plug 'arcticicestudio/nord-vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'scrooloose/nerdtree'
+  Plug 'liuchengxu/vim-which-key'
+  " On-demand lazy load
+  " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
   " language
   Plug 'leafgarland/typescript-vim'
@@ -26,6 +29,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'crusoexia/vim-dracula'
   Plug 'honza/vim-snippets'
 
+
 call plug#end()
 
 set t_Co=256
@@ -35,6 +39,7 @@ colorscheme dracula
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 " custom keybindings
 "
 " nerdtree configurations
@@ -62,22 +67,28 @@ nnoremap <leader>sb :BLines<CR>
 " search buffers 
 nnoremap <leader>bb :Buffers<CR>
 " activate codi 
-nnoremap <C-l> :Codi<CR>
+" nnoremap <C-l> :Codi<CR>
 
+" Vim tab configurations
+nnoremap <leader>tc :tabnew<CR>
+nnoremap <leader>tn :tabnext<CR>
+nnoremap <leader>tp :tabprev<CR>
+nnoremap <leader>tq :tabclose<CR>
+nnoremap <leader>tt :tabs<CR>
 
 " vim airline configurations
 " air-line
 let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
-let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '>'
-let g:airline_statusline_ontop=1
+" let g:airline_statusline_ontop=1
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'
@@ -105,16 +116,21 @@ let g:airline_symbols.linenr = ''
 
 " Coc configs
 " Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+" imap <C-l> <Plug>(coc-snippets-expand)
 
 " Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+" vmap <C-j> <Plug>(coc-snippets-select)
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+" let g:coc_snippet_next = '<c-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+" let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+
+" tabline configs
+" let g:tablineclosebutton=1
+
