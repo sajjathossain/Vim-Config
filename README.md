@@ -20,8 +20,13 @@
 1. Multi word selection: `<C-n>`
 1. Highlight a word: `shift-8`
 1. Highlight some words: `visual > shift-8`
-1. Replace highlighted word inside the whole file (greedy) `<leader>rf`
-1. Replace highlighted word inside the whole file (greedy confirm) `<leader>rF`
+1. Replace highlighted word inside the whole file (greedy): `<leader>rf`
+1. Replace highlighted word inside the whole file (greedy confirm): `<leader>rF`
+1. Change colorscheme: 
+    1. Dracula `<F1>`
+    1. Nord `<F2>`
+    1. Onedark `<F3>`
+    1. Gruvbox `<F4>`
 
 <hr/>
 

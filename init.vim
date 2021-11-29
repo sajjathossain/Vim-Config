@@ -105,6 +105,12 @@ nnoremap <leader>gd :call ReactGotoDef()<CR>
 "nmap <leader>gi <Plug>(coc-implementation)
 "nmap <leader>gr <Plug>(coc-refferences)
 
+" swich vim colorscheme
+map <F1> :colorscheme dracula<CR>
+map <F2> :colorscheme nord<CR>
+map <F3> :colorscheme onedark<CR>
+map <F4> :colorscheme gruvbox<CR>
+
 " vim airline configurations
 " air-line
 let g:airline_powerline_fonts = 1
