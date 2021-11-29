@@ -14,7 +14,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'liuchengxu/vim-which-key'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  "Plug 'tsony-tsonev/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'ivo-donchev/goto-definition-plugin-for-react'
+  Plug 'APZelos/blamer.nvim'
   " On-demand lazy load
   " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
@@ -30,7 +33,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'morhetz/gruvbox'
   Plug 'crusoexia/vim-dracula'
   Plug 'honza/vim-snippets'
-
+  "Plug 'SirVer/ultisnips'
+  Plug 'mg979/vim-visual-multi'
 
 call plug#end()
 
@@ -82,6 +86,9 @@ nnoremap <leader>tn :tabnext<CR>
 nnoremap <leader>tp :tabprev<CR>
 nnoremap <leader>tq :tabclose<CR>
 nnoremap <leader>tt :tabs<CR>
+
+" go to defination for react
+nnoremap <leader>gd :call ReactGotoDef()<CR>
 
 " coc configurations
 "nmap <leader>gd <Plug>(coc-defination)
@@ -199,3 +206,14 @@ let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets th
 
 let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for folders that did not match any rule
 let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the color for files that did not match any rule
+
+" vim snippets
+"let g:UltiSnipsExpandTrigger="<tab>"
+" git blammer config
+let g:blamer_enabled = 1
+let g:blamer_delay = 250
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_prefix = ' > '
+  "let g:blamer_template = '<committer> <summary>'
+  "highlight Blamer guifg=lightgrey

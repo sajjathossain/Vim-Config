@@ -17,6 +17,7 @@
 1. Next tab: `<leader> tn`
 1. Previous tab: `<leader> tp`
 1. Close tab: `<leader> tq`
+1. Multi word selection: `<C-n>`
 
 <hr/>
 
@@ -56,3 +57,6 @@
    `Plug 'junegunn/fzf.vim'`
    `Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }`
 1. Devicons (file-icons) `Plug 'ryanoasis/vim-devicons'`
+1. Vim-visual-multicursor `Plug 'mg979/vim-visual-multi'`
+1. Vim git blammer (gitlens alternative) `Plug 'APZelos/blamer.nvim'`
+1. Vim goto definition from react `Plug 'ivo-donchev/goto-definition-plugin-for-react'`
