@@ -62,6 +62,8 @@ nnoremap <leader>wh :split<CR>
 " FZF key bindings
 " search files
 nnoremap <leader>ff :Files<CR>
+" search files using regex
+nnoremap <leader>fF :Rg<CR>
 " search in project directory
 nnoremap <leader>sp :Lines<CR>
 " search in current buffer
