@@ -3,6 +3,6 @@
   "prettier.tabWidth": 2,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
-  "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+  "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "javascript", "javascriptreact", "json", "typescript.tsx"],
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips"
 }
