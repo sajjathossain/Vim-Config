@@ -35,6 +35,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'honza/vim-snippets'
   "Plug 'SirVer/ultisnips'
   Plug 'mg979/vim-visual-multi'
+  Plug 'haya14busa/is.vim'
+  Plug 'nelstrom/vim-visual-star-search'
 
 call plug#end()
 
@@ -62,6 +64,14 @@ nnoremap <leader>qq :q!<CR>
 nnoremap <leader>wv :vsplit<CR>
 "open window in hspilt"
 nnoremap <leader>wh :split<CR>
+" replace word in whole file (greedy)
+nnoremap <leader>rf :%s///g<Left><Left>
+" replace word in whole file (greedy confirm)
+nnoremap <leader>rF :%s///gc<Left><Left><Left>
+" replace word only highlighted (greedy)
+xnoremap <leader>rf :s///g<Left><Left>
+" replace word in whole file (greedy confirm)
+xnoremap <leader>rF :s///gc<Left><Left><Left>
 
 " FZF key bindings
 " search files

@@ -18,6 +18,10 @@
 1. Previous tab: `<leader> tp`
 1. Close tab: `<leader> tq`
 1. Multi word selection: `<C-n>`
+1. Highlight a word: `shift-8`
+1. Highlight some words: `visual > shift-8`
+1. Replace highlighted word inside the whole file (greedy) `<leader>rf`
+1. Replace highlighted word inside the whole file (greedy confirm) `<leader>rF`
 
 <hr/>
 
@@ -60,3 +64,5 @@
 1. Vim-visual-multicursor `Plug 'mg979/vim-visual-multi'`
 1. Vim git blammer (gitlens alternative) `Plug 'APZelos/blamer.nvim'`
 1. Vim goto definition from react `Plug 'ivo-donchev/goto-definition-plugin-for-react'`
+1. Vim incremental search (improved) `Plug 'haya14busa/is.vim'`
+1. Vim visual star search `Plug 'nelstrom/vim-visual-star-search'`
