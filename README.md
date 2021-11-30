@@ -47,6 +47,9 @@
 1. Nord `Plug 'arcticicestudio/nord-vim'`
 1. Gruvbox `Plug 'morhetz/gruvbox'`
 1. Dracula `Plug 'crusoexia/vim-dracula'`
+1. Ayu `Plug 'ayu-theme/ayu-vim'`
+1. Challenger-Deep `Plug 'challenger-deep-theme/vim', { 'as': 'challenger_deep' }`
+1. Oceanic-Next `Plug 'mhartington/oceanic-next', { 'as': 'oceanic_next'}`
 
 > **Language | Frameworks | Libraries | Intellisense | Autocompletions:**
 

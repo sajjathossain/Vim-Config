@@ -8,7 +8,6 @@ call plug#begin('~/.config/nvim/plugged')
 
   " theme & plugins
   Plug 'joshdick/onedark.vim'
-  Plug 'arcticicestudio/nord-vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'scrooloose/nerdtree'
@@ -23,6 +22,14 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'nelstrom/vim-visual-star-search'
   Plug 'tpope/vim-commentary'
   Plug 'kdheepak/lazygit.nvim'
+  
+  "Themes"
+  Plug 'arcticicestudio/nord-vim'
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'challenger-deep-theme/vim', { 'as': 'challenger_deep' }
+  Plug 'mhartington/oceanic-next', { 'as': 'oceanic_next'}
+  Plug 'morhetz/gruvbox'
+  Plug 'crusoexia/vim-dracula'
   " On-demand lazy load
   " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
@@ -35,18 +42,36 @@ call plug#begin('~/.config/nvim/plugged')
   let g:coc_global_extensions = ['coc-snippets', 'coc-pairs', 'coc-css', 'coc-emmet', 'coc-eslint', 'coc-explorer', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tabnine', 'coc-tsserver', 'coc-git', 'coc-tailwindcss' ]
   Plug 'ryanoasis/vim-devicons'
   Plug 'ap/vim-css-color'
-  Plug 'morhetz/gruvbox'
-  Plug 'crusoexia/vim-dracula'
   Plug 'honza/vim-snippets'
   "Plug 'SirVer/ultisnips'
   Plug 'mg979/vim-visual-multi'
 
 call plug#end()
 
+"Available themes: nord | onedark | gruvbox | dracula | ayu |
+" challenger_deep {love it} | OceanicNext {love it}
+colorscheme OceanicNext
 set t_Co=256
-syntax on
-"Available themes: Nord | Onedark | Gruvbox | Dracula"
-colorscheme gruvbox
+syntax enable
+
+if has('nvim') || has('termguicolors')
+  set termguicolors
+endif
+
+" swich vim colorscheme
+nnoremap <F1> :colorscheme dracula<CR>
+nnoremap <F2> :colorscheme nord<CR>
+nnoremap <F3> :colorscheme onedark<CR>
+nnoremap <F4> :colorscheme gruvbox<CR>
+nnoremap <F5> :colorscheme ayu<CR>
+nnoremap <F6> :colorscheme challenger_deep<CR>
+nnoremap <F7> :colorscheme OceanicNext<CR>
+
+
+" for ayu colorscheme
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
@@ -77,7 +102,7 @@ nnoremap <leader>rf :%s///g<Left><Left>
 nnoremap <leader>rF :%s///gc<Left><Left><Left>
 " replace word only highlighted (greedy)
 xnoremap <leader>rf :s///g<Left><Left>
-" replace word in whole file (greedy confirm)
+" replace word in whole file highlighted (greedy confirm)
 xnoremap <leader>rF :s///gc<Left><Left><Left>
 " Open terminal at the bottom
 " map <leader>t :bo 25sp | term<CR>
@@ -119,17 +144,13 @@ nnoremap <leader>gd :call ReactGotoDef()<CR>
 
 " vim-commentary
 nnoremap <M-/> :Commentary<Left><CR>
+" lazygit
+nnoremap <silent><leader>gg :LazyGit<CR>
 
 " coc configurations
 "nmap <leader>gd <Plug>(coc-defination)
 "nmap <leader>gi <Plug>(coc-implementation)
 "nmap <leader>gr <Plug>(coc-refferences)
-
-" swich vim colorscheme
-map <F1> :colorscheme dracula<CR>
-map <F2> :colorscheme nord<CR>
-map <F3> :colorscheme onedark<CR>
-map <F4> :colorscheme gruvbox<CR>
 
 " vim airline configurations
 " air-line
@@ -251,8 +272,9 @@ let g:blamer_delay = 250
 let g:blamer_show_in_visual_modes = 0
 let g:blamer_show_in_insert_modes = 0
 let g:blamer_prefix = ' > '
-  "let g:blamer_template = '<committer> <summary>'
-  "highlight Blamer guifg=lightgrey
+"let g:blamer_template = '<committer> <summary>'
+  "some colors: cadetblue | lightgray | darkslategray | lightslategray | mediumaquamarine | darkturquoise | deepskyblue | dodgerblue
+highlight Blamer guifg=mediumaquamarine
 
 " toggle terminal
 " nnoremap <leader>tt :ToggleTerm<CR>
@@ -261,8 +283,7 @@ let g:blamer_prefix = ' > '
 
 " lazygit
 let g:lazygit_floating_window_winblend = 0 " transparency of floating window
-let g:lazygit_floating_window_scaling_factor = 0.95 " scaling factor for floating window
+let g:lazygit_floating_window_scaling_factor = 0.90 " scaling factor for floating window
 let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
 let g:lazygit_floating_window_use_plenary = 0 " use plenary.nvim to manage floating window if available
 let g:lazygit_use_neovim_remote = 1 " fallback to 0 if neovim-remote is not installed
-nnoremap <silent><leader>gg :LazyGit<CR>
