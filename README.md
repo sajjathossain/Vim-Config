@@ -10,9 +10,13 @@
 1. Save file: `<leader> fs`
 1. Save & Quit: `<leader> qs`
 1. Quit without saving: `<leader> qq`
-1. Search files: `<leader> ff`
-1. Search files using regex: `<leader> fF`
-1. Search buffers: `<leader> fb`
+1. Search for files: `<leader> ff`
+1. Search in files using regex: `<leader> fF`
+1. Seearch in files in specific files types: `leader fF` > add `-g '*.fileExtension'`
+1. Search in files and open in vsplit: `<leader> fF` > `<C-v>`
+1. Search buffers: `<leader> bb`
+1. Search in opened buffers: `<leader> sb`
+1. Search in opened file: `<leader> sp`
 1. New tab: `<leader> tc`
 1. Next tab: `<leader> tn`
 1. Previous tab: `<leader> tp`
@@ -20,8 +24,8 @@
 1. Multi word selection: `<C-n>`
 1. Highlight a word: `shift-8`
 1. Highlight some words: `visual > shift-8`
-1. Replace highlighted word inside the whole file (greedy): `<leader>rf`
-1. Replace highlighted word inside the whole file (greedy confirm): `<leader>rF`
+1. Replace highlighted word inside the whole file (greedy): `<leader> rf`
+1. Replace highlighted word inside the whole file (greedy confirm): `<leader> rF`
 1. Change colorscheme: 
     1. Dracula `<F1>`
     1. Nord `<F2>`
@@ -71,3 +75,4 @@
 1. Vim goto definition from react `Plug 'ivo-donchev/goto-definition-plugin-for-react'`
 1. Vim incremental search (improved) `Plug 'haya14busa/is.vim'`
 1. Vim visual star search `Plug 'nelstrom/vim-visual-star-search'`
+1. Vim commentary (toggle-comments): `Plug 'tpope/vim-commentary'`

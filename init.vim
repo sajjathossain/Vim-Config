@@ -14,10 +14,14 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'liuchengxu/vim-which-key'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  "Plug 'tsony-tsonev/nerdtree-git-plugin'
+  "Plug 'tsony-tsonev/nerdtree-git-plugin' "could not install
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ivo-donchev/goto-definition-plugin-for-react'
   Plug 'APZelos/blamer.nvim'
+  " Plug 'akinsho/toggleterm.nvim'
+  Plug 'haya14busa/is.vim'
+  Plug 'nelstrom/vim-visual-star-search'
+  Plug 'tpope/vim-commentary'
   " On-demand lazy load
   " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
@@ -35,15 +39,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'honza/vim-snippets'
   "Plug 'SirVer/ultisnips'
   Plug 'mg979/vim-visual-multi'
-  Plug 'haya14busa/is.vim'
-  Plug 'nelstrom/vim-visual-star-search'
 
 call plug#end()
 
 set t_Co=256
 syntax on
 "Available themes: Nord | Onedark | Gruvbox | Dracula"
-colorscheme dracula
+colorscheme gruvbox
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
@@ -53,6 +55,8 @@ nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 " nerdtree configurations
 nnoremap <leader>ft :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+
 " some vim commands
 " save file
 nnoremap <leader>fs :w<CR>
@@ -60,6 +64,8 @@ nnoremap <leader>fs :w<CR>
 nnoremap <leader>qs :wq<CR>
 " quit without saving
 nnoremap <leader>qq :q!<CR>
+" quit all and exit vim
+nnoremap <leader>qQ :qa<CR>
 "open window in vspilt"
 nnoremap <leader>wv :vsplit<CR>
 "open window in hspilt"
@@ -72,6 +78,9 @@ nnoremap <leader>rF :%s///gc<Left><Left><Left>
 xnoremap <leader>rf :s///g<Left><Left>
 " replace word in whole file (greedy confirm)
 xnoremap <leader>rF :s///gc<Left><Left><Left>
+" Open terminal at the bottom
+" map <leader>t :bo 25sp | term<CR>
+" nnoremap <leader>tt :bo 10sp | :term <CR>
 
 " FZF key bindings
 " search files
@@ -82,9 +91,16 @@ nnoremap <leader>fF :Rg<CR>
 nnoremap <leader>sp :Lines<CR>
 " search in current buffer
 nnoremap <leader>sb :BLines<CR>
-" search buffers 
+" list all buffers 
 nnoremap <leader>bb :Buffers<CR>
-" exclude node_modules for fuzzy search
+" go to next buffer
+nnoremap <leader>bn :bnext<CR>
+" go to next buffer
+nnoremap <leader>bp :bprevious<CR>
+" go to next buffer
+nnoremap <leader>bd :bdelete<CR>
+" exclude node_modules for fuzzy search (add this into the .bashrc/.zshrc file)
+" export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,.next/*,~/.config/nvim/plugged/*,.idea/*,.vscode/*}"'
 
 
 " activate codi 
@@ -95,10 +111,13 @@ nnoremap <leader>tc :tabnew<CR>
 nnoremap <leader>tn :tabnext<CR>
 nnoremap <leader>tp :tabprev<CR>
 nnoremap <leader>tq :tabclose<CR>
-nnoremap <leader>tt :tabs<CR>
+nnoremap <leader>tl :tabs<CR>
 
 " go to defination for react
 nnoremap <leader>gd :call ReactGotoDef()<CR>
+
+" vim-commentary
+nnoremap <M-/> :Commentary<Left><CR>
 
 " coc configurations
 "nmap <leader>gd <Plug>(coc-defination)
@@ -233,3 +252,9 @@ let g:blamer_show_in_insert_modes = 0
 let g:blamer_prefix = ' > '
   "let g:blamer_template = '<committer> <summary>'
   "highlight Blamer guifg=lightgrey
+
+" toggle terminal
+" nnoremap <leader>tt :ToggleTerm<CR>
+" let g:toggleterm_terminal_mapping = '<C-t>'
+" let g:ToggleTerm size=40 direction=horizontal
+
