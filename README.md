@@ -23,7 +23,7 @@
 1. Close tab: `<leader> tq`
 1. Multi word selection: `<C-n>`
 1. Highlight a word: `shift-8`
-1. Highlight some words: `visual > shift-8`
+1. Highlight words: `visual > shift-8`
 1. Replace highlighted word inside the whole file (greedy): `<leader> rf`
 1. Replace highlighted word inside the whole file (greedy confirm): `<leader> rF`
 1. Change colorscheme: 
@@ -31,6 +31,9 @@
     1. Nord `<F2>`
     1. Onedark `<F3>`
     1. Gruvbox `<F4>`
+1. Open lazygit: `<leader>gg`
+1. Exit lazygit: `q`
+1. Goto definition: `<leader>gd`
 
 <hr/>
 
@@ -71,8 +74,10 @@
    `Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }`
 1. Devicons (file-icons) `Plug 'ryanoasis/vim-devicons'`
 1. Vim-visual-multicursor `Plug 'mg979/vim-visual-multi'`
-1. Vim git blammer (gitlens alternative) `Plug 'APZelos/blamer.nvim'`
+1. Vim git blamer (gitlens alternative) `Plug 'APZelos/blamer.nvim'`
 1. Vim goto definition from react `Plug 'ivo-donchev/goto-definition-plugin-for-react'`
 1. Vim incremental search (improved) `Plug 'haya14busa/is.vim'`
 1. Vim visual star search `Plug 'nelstrom/vim-visual-star-search'`
 1. Vim commentary (toggle-comments): `Plug 'tpope/vim-commentary'`
+1. Lazygit support in vim (git-tui-client): `Plug 'kdheepak/lazygit.nvim'`
+1. Vim multi word select: `Plug 'nelstrom/vim-visual-star-search'`
