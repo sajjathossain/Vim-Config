@@ -22,6 +22,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'nelstrom/vim-visual-star-search'
   Plug 'tpope/vim-commentary'
   Plug 'kdheepak/lazygit.nvim'
+  Plug '907th/vim-auto-save'
   
   "Themes"
   Plug 'arcticicestudio/nord-vim'
@@ -287,3 +288,9 @@ let g:lazygit_floating_window_scaling_factor = 0.90 " scaling factor for floatin
 let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
 let g:lazygit_floating_window_use_plenary = 0 " use plenary.nvim to manage floating window if available
 let g:lazygit_use_neovim_remote = 1 " fallback to 0 if neovim-remote is not installed
+
+" vim auto save
+let g:auto_save = 1
+let g:auto_save_silent = 0
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
+" let g:auto_save_write_all_buffers = 1

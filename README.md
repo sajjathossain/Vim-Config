@@ -84,3 +84,4 @@
 1. Vim commentary (toggle-comments): `Plug 'tpope/vim-commentary'`
 1. Lazygit support in vim (git-tui-client): `Plug 'kdheepak/lazygit.nvim'`
 1. Vim multi word select: `Plug 'nelstrom/vim-visual-star-search'`
+1. Vim auto save: `Plug '907th/vim-auto-save'`
