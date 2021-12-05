@@ -6,12 +6,13 @@ set nobackup
 
 call plug#begin('~/.config/nvim/plugged')
 
-  " theme & plugins
+  " plugins
   Plug 'joshdick/onedark.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'scrooloose/nerdtree'
   Plug 'liuchengxu/vim-which-key'
+  " Plug 'folke/which-key.nvim'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   "Plug 'tsony-tsonev/nerdtree-git-plugin' "could not install
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -23,6 +24,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-commentary'
   Plug 'kdheepak/lazygit.nvim'
   Plug '907th/vim-auto-save'
+  Plug 'rrethy/vim-illuminate'
+  Plug 'wincent/terminus'
   
   "Themes"
   Plug 'arcticicestudio/nord-vim'
@@ -31,6 +34,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mhartington/oceanic-next', { 'as': 'oceanic_next'}
   Plug 'morhetz/gruvbox'
   Plug 'crusoexia/vim-dracula'
+  Plug 'srcery-colors/srcery-vim'
   " On-demand lazy load
   " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
@@ -45,18 +49,18 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ap/vim-css-color'
   Plug 'honza/vim-snippets'
   "Plug 'SirVer/ultisnips'
-  Plug 'mg979/vim-visual-multi'
 
 call plug#end()
 
 "Available themes: nord | onedark | gruvbox | dracula | ayu |
-" challenger_deep {love it} | OceanicNext {love it}
-colorscheme OceanicNext
+" challenger_deep {love it} | OceanicNext {love it} | srcery
+colorscheme srcery
 set t_Co=256
 syntax enable
 
 if has('nvim') || has('termguicolors')
   set termguicolors
+  let g:neovide_cursor_vfx_mode = "railgun"
 endif
 
 " swich vim colorscheme
@@ -80,6 +84,9 @@ nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 " custom keybindings
 "
 " nerdtree configurations
+" let NERDTreeExtensionHighlightColor=orangered
+let NERDTreeFileExtensionHighlightFullName=1
+let NERDTreeShowHidden=1
 nnoremap <leader>ft :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
@@ -147,6 +154,10 @@ nnoremap <leader>gd :call ReactGotoDef()<CR>
 nnoremap <M-/> :Commentary<Left><CR>
 " lazygit
 nnoremap <silent><leader>gg :LazyGit<CR>
+" source nvim config file
+nnoremap <silent><leader>zz :source %<CR>
+" paste from clipboard
+" nnoremap <C-v> :set paste<CR>
 
 " coc configurations
 "nmap <leader>gd <Plug>(coc-defination)
@@ -189,7 +200,8 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 "Fzf"
-""let g:fzf_layout = {"down": "40%"}
+" let g:fzf_layout = {"down": "55%"}
+" let g:fzf_layout = {"up": "55%"}
 
 " Coc configs
 " Use <C-l> for trigger snippet expand.
@@ -273,6 +285,7 @@ let g:blamer_delay = 250
 let g:blamer_show_in_visual_modes = 0
 let g:blamer_show_in_insert_modes = 0
 let g:blamer_prefix = ' > '
+
 "let g:blamer_template = '<committer> <summary>'
   "some colors: cadetblue | lightgray | darkslategray | lightslategray | mediumaquamarine | darkturquoise | deepskyblue | dodgerblue
 highlight Blamer guifg=mediumaquamarine
@@ -290,7 +303,13 @@ let g:lazygit_floating_window_use_plenary = 0 " use plenary.nvim to manage float
 let g:lazygit_use_neovim_remote = 1 " fallback to 0 if neovim-remote is not installed
 
 " vim auto save
-let g:auto_save = 1
+let g:auto_save = 0
 let g:auto_save_silent = 0
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
+let g:auto_save_events = ["TextChanged"] "InsertLeave
 " let g:auto_save_write_all_buffers = 1
+
+" Vim illuminate
+" Time in milliseconds (default 0)
+let g:Illuminate_delay = 0
+" Don't highlight word under cursor (default: 1)
+let g:Illuminate_highlightUnderCursor = 1
