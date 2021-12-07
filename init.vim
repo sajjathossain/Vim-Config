@@ -1,12 +1,16 @@
 set nu
+set autoindent
 set mouse=a 
 set tabstop=2 shiftwidth=2 expandtab
 set noswapfile
 set nobackup
+set conceallevel=3
+set guifont=FiraCode\ Nerd\ Font\ Medium\ 12
+" set guifont=Fira Code
 
 call plug#begin('~/.config/nvim/plugged')
 
-  " plugins
+  " Vim plugins
   Plug 'joshdick/onedark.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -16,7 +20,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'Xuyuanp/nerdtree-git-plugin'
   "Plug 'tsony-tsonev/nerdtree-git-plugin' "could not install
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  Plug 'ivo-donchev/goto-definition-plugin-for-react'
+  " Plug 'ivo-donchev/goto-definition-plugin-for-react'
+  Plug 'Ivo-Donchev/vim-react-goto-definition'
   Plug 'APZelos/blamer.nvim'
   " Plug 'akinsho/toggleterm.nvim'
   Plug 'haya14busa/is.vim'
@@ -25,7 +30,12 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'kdheepak/lazygit.nvim'
   Plug '907th/vim-auto-save'
   Plug 'rrethy/vim-illuminate'
-  Plug 'wincent/terminus'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'unkiwii/vim-nerdtree-sync'
+  Plug 'easymotion/vim-easymotion'
+  Plug 'nathanaelkane/vim-indent-guides'
+  " Plug 'kien/rainbow_parentheses.vim'
+  " Plug 'luochen1990/rainbow'
   
   "Themes"
   Plug 'arcticicestudio/nord-vim'
@@ -44,7 +54,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }  
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  let g:coc_global_extensions = ['coc-snippets', 'coc-pairs', 'coc-css', 'coc-emmet', 'coc-eslint', 'coc-explorer', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tabnine', 'coc-tsserver', 'coc-git', 'coc-tailwindcss' ]
+  let g:coc_global_extensions = ['coc-snippets', 'coc-pairs', 'coc-css', 'coc-emmet', 'coc-eslint', 'coc-explorer', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tabnine', 'coc-tsserver', 'coc-git', 'coc-tailwindcss', 'coc-vimlsp' ]
   Plug 'ryanoasis/vim-devicons'
   Plug 'ap/vim-css-color'
   Plug 'honza/vim-snippets'
@@ -88,7 +98,7 @@ nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 let NERDTreeFileExtensionHighlightFullName=1
 let NERDTreeShowHidden=1
 nnoremap <leader>ft :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 
 " some vim commands
@@ -100,6 +110,8 @@ nnoremap <leader>qs :wq<CR>
 nnoremap <leader>qq :q!<CR>
 " quit all and exit vim
 nnoremap <leader>qQ :qa<CR>
+" Copy everything after the cursor 
+nnoremap Y y$ <CR>
 "open window in vspilt"
 nnoremap <leader>wv :vsplit<CR>
 "open window in hspilt"
@@ -148,16 +160,15 @@ nnoremap <leader>tq :tabclose<CR>
 nnoremap <leader>tl :tabs<CR>
 
 " go to defination for react
-nnoremap <leader>gd :call ReactGotoDef()<CR>
+noremap <leader>gd :call ReactGotoDef()<CR>
 
 " vim-commentary
 nnoremap <M-/> :Commentary<Left><CR>
 " lazygit
 nnoremap <silent><leader>gg :LazyGit<CR>
 " source nvim config file
-nnoremap <silent><leader>zz :source %<CR>
 " paste from clipboard
-" nnoremap <C-v> :set paste<CR>
+nnoremap <M-v> :set paste<CR>
 
 " coc configurations
 "nmap <leader>gd <Plug>(coc-defination)
@@ -244,6 +255,9 @@ let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1 " enable folder glyph flag
+let g:webdevicons_conceal_nerdtree_brackets=1
 " nerdtree extension color
 " you can add these colors to your .vimrc to help customizing
 let s:brown = "905532"
@@ -313,3 +327,57 @@ let g:auto_save_events = ["TextChanged"] "InsertLeave
 let g:Illuminate_delay = 0
 " Don't highlight word under cursor (default: 1)
 let g:Illuminate_highlightUnderCursor = 1
+
+" Nerdtree syntax highlight
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+" Nerdtree file sync
+" let g:nerdtree_sync_cursorline = 1
+let g:nerdtree_sync_cursorline = 1
+let g:NERDTreeHighlightCursorline = 1
+
+" Neovim change font size
+if has("gui")
+let s:fontsize = 14
+function! AdjustFontSize(amount)
+  let s:fontsize = s:fontsize+a:amount
+  :execute "guiFont! Consolas:h" . s:fontsize
+endfunction
+
+noremap <C-ScrollWheelUp> :call AdjustFontSize(1)<CR>
+noremap <C-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
+inoremap <C-ScrollWheelUp> <Esc>:call AdjustFontSize(1)<CR>a
+inoremap <C-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
+endif
+let g:Guifont="Fira Mono:h13"
+
+" vim indent guide
+let g:indent_guides_enable_on_vim_startup = 1
+
+" Rainbow parenthesis
+" let g:rbpt_colorpairs = [
+"     \ ['brown',       'RoyalBlue3'],
+    " \ ['Darkblue',    'SeaGreen3'],
+    " \ ['darkgray',    'DarkOrchid3'],
+    " \ ['darkgreen',   'firebrick3'],
+    " \ ['darkcyan',    'RoyalBlue3'],
+    " \ ['darkred',     'SeaGreen3'],
+    " \ ['darkmagenta', 'DarkOrchid3'],
+    " \ ['brown',       'firebrick3'],
+    " \ ['gray',        'RoyalBlue3'],
+    " \ ['black',       'SeaGreen3'],
+    " \ ['darkmagenta', 'DarkOrchid3'],
+    " \ ['Darkblue',    'firebrick3'],
+    " \ ['darkgreen',   'RoyalBlue3'],
+    " \ ['darkcyan',    'SeaGreen3'],
+    " \ ['darkred',     'DarkOrchid3'],
+    " \ ['red',         'firebrick3'],
+    " \ ]
+
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
+" let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
