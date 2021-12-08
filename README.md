@@ -34,6 +34,8 @@
 1. Open lazygit: `<leader>gg`
 1. Exit lazygit: `q`
 1. Goto definition: `<leader>gd`
+1. Fold vim block: `zc`
+1. Unold vim block: `zo`
 
 <hr/>
 

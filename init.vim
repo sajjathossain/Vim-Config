@@ -1,13 +1,35 @@
-set nu
+" Basic Settings {{{
+set number
 set autoindent
+set encoding=UTF-8
+set cursorline
+set showcmd
+" set showtabline
+set spelllang=en_us
+set spell
 set mouse=a 
 set tabstop=2 shiftwidth=2 expandtab
 set noswapfile
+set foldenable
+set foldmethod=marker
+set foldmarker={{{,}}}
 set nobackup
 set conceallevel=3
 set guifont=FiraCode\ Nerd\ Font\ Medium\ 12
+
+" highlight Normal ctermbg=NONE
+highlight Comment cterm=italic
+highlight CursorLine ctermbg=Black cterm=NONE 
+highlight CursorLineNr ctermbg=Black cterm=bold ctermfg=Green
+highlight SpellBad ctermfg=Red
+highlight Folded ctermbg=NONE ctermfg=White cterm=bold
 " set guifont=Fira Code
 
+" Remap esc key
+inoremap ;; <Esc>
+"}}}
+
+" Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
 
   " Vim plugins
@@ -58,9 +80,15 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ryanoasis/vim-devicons'
   Plug 'ap/vim-css-color'
   Plug 'honza/vim-snippets'
-  "Plug 'SirVer/ultisnips'
+  Plug 'SirVer/ultisnips'
+  Plug 'leafOfTree/vim-matchtag'
+  Plug 'AndrewRadev/tagalong.vim'
 
 call plug#end()
+
+" }}}
+
+" Vim UI colorscheme setup {{{ 
 
 "Available themes: nord | onedark | gruvbox | dracula | ayu |
 " challenger_deep {love it} | OceanicNext {love it} | srcery
@@ -73,6 +101,9 @@ if has('nvim') || has('termguicolors')
   let g:neovide_cursor_vfx_mode = "railgun"
 endif
 
+" }}}
+
+" Switch colorscheme & colorscheme settings {{{
 " swich vim colorscheme
 nnoremap <F1> :colorscheme dracula<CR>
 nnoremap <F2> :colorscheme nord<CR>
@@ -82,26 +113,18 @@ nnoremap <F5> :colorscheme ayu<CR>
 nnoremap <F6> :colorscheme challenger_deep<CR>
 nnoremap <F7> :colorscheme OceanicNext<CR>
 
-
 " for ayu colorscheme
 "let ayucolor="light"  " for light version of theme
 "let ayucolor="mirage" " for mirage version of theme
 "let ayucolor="dark"
 
+" }}}
+
+" Some vim commands, keyremaps and keybindings {{{
 nnoremap <SPACE> <Nop>
 let mapleader=" "
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-" custom keybindings
-"
-" nerdtree configurations
-" let NERDTreeExtensionHighlightColor=orangered
-let NERDTreeFileExtensionHighlightFullName=1
-let NERDTreeShowHidden=1
-nnoremap <leader>ft :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
+nnoremap <leader> :WhichKey'<Space>'<CR>
 
-
-" some vim commands
 " save file
 nnoremap <leader>fs :w<CR>
 " save and quit
@@ -128,7 +151,24 @@ xnoremap <leader>rF :s///gc<Left><Left><Left>
 " map <leader>t :bo 25sp | term<CR>
 " nnoremap <leader>tt :bo 10sp | :term <CR>
 
-" FZF key bindings
+" Vim tab configurations
+nnoremap <leader>tc :tabnew<CR>
+nnoremap <leader>tn :tabnext<CR>
+nnoremap <leader>tp :tabprev<CR>
+nnoremap <leader>tq :tabclose<CR>
+nnoremap <leader>tl :tabs<CR>
+
+" Source nvim config file
+nnoremap <leader>ss :source %<CR>
+
+" Paste from clipboard
+nnoremap <M-v> :set paste<CR>
+
+
+
+" }}}
+
+" FZF key bindings {{{
 " search files
 nnoremap <leader>ff :Files<CR>
 " search files using regex
@@ -148,34 +188,57 @@ nnoremap <leader>bd :bdelete<CR>
 " exclude node_modules for fuzzy search (add this into the .bashrc/.zshrc file)
 " export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,.next/*,~/.config/nvim/plugged/*,.idea/*,.vscode/*}"'
 
+"Fzf"
+" let g:fzf_layout = {"down": "55%"}
+" let g:fzf_layout = {"up": "55%"}
 
-" activate codi 
+" Coc configs
+" Use <C-l> for trigger snippet expand.
+" imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+" vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+" let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+
+" }}}
+
+" Codi plugin setup {{{
+" activate plugin 
 " nnoremap <C-l> :Codi<CR>
 
-" Vim tab configurations
-nnoremap <leader>tc :tabnew<CR>
-nnoremap <leader>tn :tabnext<CR>
-nnoremap <leader>tp :tabprev<CR>
-nnoremap <leader>tq :tabclose<CR>
-nnoremap <leader>tl :tabs<CR>
+" }}}
 
-" go to defination for react
+" Go to defination for react plugin {{{
 noremap <leader>gd :call ReactGotoDef()<CR>
 
-" vim-commentary
+" }}}
+
+" Vim-commentary {{{
 nnoremap <M-/> :Commentary<Left><CR>
-" lazygit
+
+"}}}
+
+" Lazygit {{{
 nnoremap <silent><leader>gg :LazyGit<CR>
-" source nvim config file
-" paste from clipboard
-nnoremap <M-v> :set paste<CR>
+" }}}
 
-" coc configurations
-"nmap <leader>gd <Plug>(coc-defination)
-"nmap <leader>gi <Plug>(coc-implementation)
-"nmap <leader>gr <Plug>(coc-refferences)
+" Coc configurations {{{
+nnoremap <leader>gcd <Plug>(coc-defination)
+nnoremap <leader>gi <Plug>(coc-implementation)
+nnoremap <leader>gr <Plug>(coc-refferences)
 
-" vim airline configurations
+" }}}
+
+" Vim airline configurations {{{
 " air-line
 let g:airline_powerline_fonts = 1
 
@@ -183,6 +246,7 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
+" Airline 
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -210,31 +274,14 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-"Fzf"
-" let g:fzf_layout = {"down": "55%"}
-" let g:fzf_layout = {"up": "55%"}
 
-" Coc configs
-" Use <C-l> for trigger snippet expand.
-" imap <C-l> <Plug>(coc-snippets-expand)
+" }}}
 
-" Use <C-j> for select text for visual placeholder of snippet.
-" vmap <C-j> <Plug>(coc-snippets-select)
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-" let g:coc_snippet_next = '<c-j>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-" let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-" imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-
-" tabline configs
+" Tabline configs {{{
 " let g:tablineclosebutton=1
+" }}}
 
-" nerdtree configs
+" Nerdtree configs {{{
 let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Modified'  :'✹',
                 \ 'Staged'    :'✚',
@@ -291,9 +338,6 @@ let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets th
 let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for folders that did not match any rule
 let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the color for files that did not match any rule
 
-" vim snippets
-"let g:UltiSnipsExpandTrigger="<tab>"
-" git blammer config
 let g:blamer_enabled = 1
 let g:blamer_delay = 250
 let g:blamer_show_in_visual_modes = 0
@@ -304,30 +348,6 @@ let g:blamer_prefix = ' > '
   "some colors: cadetblue | lightgray | darkslategray | lightslategray | mediumaquamarine | darkturquoise | deepskyblue | dodgerblue
 highlight Blamer guifg=mediumaquamarine
 
-" toggle terminal
-" nnoremap <leader>tt :ToggleTerm<CR>
-" let g:toggleterm_terminal_mapping = '<C-t>'
-" let g:ToggleTerm size=40 direction=horizontal
-
-" lazygit
-let g:lazygit_floating_window_winblend = 0 " transparency of floating window
-let g:lazygit_floating_window_scaling_factor = 0.90 " scaling factor for floating window
-let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
-let g:lazygit_floating_window_use_plenary = 0 " use plenary.nvim to manage floating window if available
-let g:lazygit_use_neovim_remote = 1 " fallback to 0 if neovim-remote is not installed
-
-" vim auto save
-let g:auto_save = 0
-let g:auto_save_silent = 0
-let g:auto_save_events = ["TextChanged"] "InsertLeave
-" let g:auto_save_write_all_buffers = 1
-
-" Vim illuminate
-" Time in milliseconds (default 0)
-let g:Illuminate_delay = 0
-" Don't highlight word under cursor (default: 1)
-let g:Illuminate_highlightUnderCursor = 1
-
 " Nerdtree syntax highlight
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
@@ -337,6 +357,52 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 " let g:nerdtree_sync_cursorline = 1
 let g:nerdtree_sync_cursorline = 1
 let g:NERDTreeHighlightCursorline = 1
+
+
+" let NERDTreeExtensionHighlightColor=orangered
+let NERDTreeFileExtensionHighlightFullName=1
+let NERDTreeShowHidden=1
+nnoremap <leader>ft :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+
+
+
+" }}}
+
+" Toggle term plugin {{{
+" toggle terminal
+" nnoremap <leader>tt :ToggleTerm<CR>
+" let g:toggleterm_terminal_mapping = '<C-t>'
+" let g:ToggleTerm size=40 direction=horizontal
+
+" }}}
+
+" Lazygit {{{
+let g:lazygit_floating_window_winblend = 0 " transparency of floating window
+let g:lazygit_floating_window_scaling_factor = 0.90 " scaling factor for floating window
+let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
+let g:lazygit_floating_window_use_plenary = 0 " use plenary.nvim to manage floating window if available
+let g:lazygit_use_neovim_remote = 1 " fallback to 0 if neovim-remote is not installed
+
+" }}}
+
+" Vim auto save plugin {{{
+let g:auto_save = 0
+let g:auto_save_silent = 0
+let g:auto_save_events = ["TextChanged"] "InsertLeave
+" let g:auto_save_write_all_buffers = 1
+
+" }}}
+
+" Vim illuminate {{{
+" Time in milliseconds (default 0)
+let g:Illuminate_delay = 0
+" Don't highlight word under cursor (default: 1)
+let g:Illuminate_highlightUnderCursor = 1
+
+" }}}
+
+" Neovim GUI {{{
 
 " Neovim change font size
 if has("gui")
@@ -353,10 +419,15 @@ inoremap <C-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
 endif
 let g:Guifont="Fira Mono:h13"
 
-" vim indent guide
+
+" }}}
+
+" Vim indent guide {{{
 let g:indent_guides_enable_on_vim_startup = 1
 
-" Rainbow parenthesis
+" }}}
+
+" Highlight parenthesis {{{
 " let g:rbpt_colorpairs = [
 "     \ ['brown',       'RoyalBlue3'],
     " \ ['Darkblue',    'SeaGreen3'],
@@ -381,3 +452,14 @@ let g:indent_guides_enable_on_vim_startup = 1
 " au Syntax * RainbowParenthesesLoadSquare
 " au Syntax * RainbowParenthesesLoadBraces
 " let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
+" Highlight matching tag (begin/end)
+let g:vim_matchtag_enable_by_default = 1
+let g:vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.ts,*.tsx,*.vue,*.svelte,*.jsp,*.php,*.erb'
+" }}}
+
+" Utils snippets {{{
+"let g:UltiSnipsExpandTrigger="<tab>"
+" git blammer config
+"
+" }}}
