@@ -1,33 +1,68 @@
 " Basic Settings {{{
-set number
+set number relativenumber
 set autoindent
 set encoding=UTF-8
 set cursorline
 set showcmd
 " set showtabline
-set spelllang=en_us
-set spell
+" set spelllang=en_us
+" set spell
 set mouse=a 
 set tabstop=2 shiftwidth=2 expandtab
 set noswapfile
 set foldenable
 set foldmethod=marker
 set foldmarker={{{,}}}
+
+"   set foldmethod=syntax
+"   let javascript_fold=1
+"   let typescript_fold=1
+"   set foldcolumn=1 "defines 1 col at window left, to indicate folding
+"   set foldlevelstart=99 "start file with all folds opened
+
 set nobackup
 set conceallevel=3
 set guifont=FiraCode\ Nerd\ Font\ Medium\ 12
 
-" highlight Normal ctermbg=NONE
+highlight Normal ctermbg=Black ctermfg=White cterm=NONE
 highlight Comment cterm=italic
 highlight CursorLine ctermbg=Black cterm=NONE 
 highlight CursorLineNr ctermbg=Black cterm=bold ctermfg=Green
 highlight SpellBad ctermfg=Red
-highlight Folded ctermbg=NONE ctermfg=White cterm=bold
+highlight Folded ctermbg=Black ctermfg=White cterm=bold
 " set guifont=Fira Code
 
-" Remap esc key
-inoremap ;; <Esc>
 "}}}
+
+" Disable arrow keys {{{
+
+" You could add this to your .vimrc to disable the arrow keys in Command, Insert, Normal and Visual Mode:
+
+" Remove newbie crutches in Command Mode
+" cnoremap <Down> <Nop>
+" cnoremap <Left> <Nop>
+" cnoremap <Right> <Nop>
+" cnoremap <Up> <Nop>
+
+" Remove newbie crutches in Insert Mode
+" inoremap <Down> <Nop>
+" inoremap <Left> <Nop>
+" inoremap <Right> <Nop>
+" inoremap <Up> <Nop>
+
+" Remove newbie crutches in Normal Mode
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+
+" Remove newbie crutches in Visual Mode
+vnoremap <Down> <Nop>
+vnoremap <Left> <Nop>
+vnoremap <Right> <Nop>
+vnoremap <Up> <Nop>
+
+" }}}
 
 " Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
@@ -58,6 +93,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'nathanaelkane/vim-indent-guides'
   " Plug 'kien/rainbow_parentheses.vim'
   " Plug 'luochen1990/rainbow'
+  Plug 'xiyaowong/nvim-transparent'
+  Plug 'bling/vim-bufferline'
+  Plug 'voldikss/vim-floaterm'
   
   "Themes"
   Plug 'arcticicestudio/nord-vim'
@@ -83,6 +121,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'SirVer/ultisnips'
   Plug 'leafOfTree/vim-matchtag'
   Plug 'AndrewRadev/tagalong.vim'
+  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+  " Plug 'nvim-treesitter/playground'
 
 call plug#end()
 
@@ -95,6 +135,7 @@ call plug#end()
 colorscheme srcery
 set t_Co=256
 syntax enable
+set background=dark
 
 if has('nvim') || has('termguicolors')
   set termguicolors
@@ -124,6 +165,13 @@ nnoremap <F7> :colorscheme OceanicNext<CR>
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 nnoremap <leader> :WhichKey'<Space>'<CR>
+
+" Remap esc key and disable any action in insert mode
+inoremap fj <Esc>
+inoremap <Esc> <Nop>
+
+" change window
+nnoremap <leader>ww <C-w>w<CR>
 
 " save file
 nnoremap <leader>fs :w<CR>
@@ -423,7 +471,7 @@ let g:Guifont="Fira Mono:h13"
 " }}}
 
 " Vim indent guide {{{
-let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_enable_on_vim_startup = 1
 
 " }}}
 
@@ -462,4 +510,18 @@ let g:vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.ts,*.tsx,*.vue,*.svelte,*.
 "let g:UltiSnipsExpandTrigger="<tab>"
 " git blammer config
 "
+" }}}
+
+" Treesitter {{{
+" let g:TSBufEnable
+" }}}
+
+" nvim transparent {{{
+" let g:transparent_enabled = v:true
+" }}}
+
+" FLoat term {{{
+let g:floaterm_keymap_toggle = '<F12>'
+let g:floaterm_width = 0.85
+let g:floaterm_height = 0.95
 " }}}

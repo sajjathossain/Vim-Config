@@ -3,13 +3,18 @@
 > **Some of my Keybindings :)**
 
 1. Leader key: `Space`
+1. Esc key replacement: `fj`
 1. Activate Insert Mode (at the beginning of the character): `i`
 1. Activate Insert Mode (at the start of the line): `I`
 1. Activate Insert Mode (after of the character): `a`
 1. Activate Insert Mode (at the end of the line): `A`
+1. Change window : `<leader> ww`
 1. Save file: `<leader> fs`
 1. Save & Quit: `<leader> qs`
 1. Quit without saving: `<leader> qq`
+1. Fold all folders in nerdtree: `<C-f>`
+1. Goto the next line of a paragraph: `gj`
+1. Goto the previous line of a paragraph: `gk`
 1. Search for files: `<leader> ff`
 1. Search in files using regex: `<leader> fF`
 1. Seearch in files in specific files types: `leader fF` > add `-g '*.fileExtension'`
@@ -36,6 +41,7 @@
 1. Goto definition: `<leader>gd`
 1. Fold vim block: `zc`
 1. Unold vim block: `zo`
+1. Toggle floating terminal: `<F12>`
 
 <hr/>
 
@@ -87,3 +93,4 @@
 1. Lazygit support in vim (git-tui-client): `Plug 'kdheepak/lazygit.nvim'`
 1. Vim multi word select: `Plug 'nelstrom/vim-visual-star-search'`
 1. Vim auto save: `Plug '907th/vim-auto-save'`
+1. Floaterm: `Plug 'voldikss/vim-floaterm'`

@@ -16,7 +16,8 @@
     "json",
     "typescript.tsx",
     "*.ts*",
-    "*.js*"
+    "*.js*",
+    "vim"
   ],
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips/"
 }
