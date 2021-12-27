@@ -22,7 +22,7 @@ set foldmarker={{{,}}}
 
 set nobackup
 set conceallevel=3
-set guifont=FiraCode\ Nerd\ Font\ Medium\ 12
+set guifont=Fira\ Code:h12
 
 highlight Normal ctermbg=Black ctermfg=White cterm=NONE
 highlight Comment cterm=italic
@@ -31,6 +31,7 @@ highlight CursorLineNr ctermbg=Black cterm=bold ctermfg=Green
 highlight SpellBad ctermfg=Red
 highlight Folded ctermbg=Black ctermfg=White cterm=bold
 " set guifont=Fira Code
+set debug=throw
 
 "}}}
 
@@ -71,6 +72,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'joshdick/onedark.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  " Plug 'datwaft/bubbly.nvim'
+  " Plug 'tamton-aquib/staline.nvim'
   Plug 'scrooloose/nerdtree'
   Plug 'liuchengxu/vim-which-key'
   " Plug 'folke/which-key.nvim'
@@ -96,7 +99,17 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'xiyaowong/nvim-transparent'
   Plug 'bling/vim-bufferline'
   Plug 'voldikss/vim-floaterm'
-  
+  Plug 'rcarriga/nvim-notify'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'romgrk/barbar.nvim'
+  Plug 'Xuyuanp/scrollbar.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'ray-x/lsp_signature.nvim'
+  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'ray-x/aurora'
+
+
   "Themes"
   Plug 'arcticicestudio/nord-vim'
   Plug 'ayu-theme/ayu-vim'
@@ -121,7 +134,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'SirVer/ultisnips'
   Plug 'leafOfTree/vim-matchtag'
   Plug 'AndrewRadev/tagalong.vim'
-  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
   " Plug 'nvim-treesitter/playground'
 
 call plug#end()
@@ -131,8 +144,8 @@ call plug#end()
 " Vim UI colorscheme setup {{{ 
 
 "Available themes: nord | onedark | gruvbox | dracula | ayu |
-" challenger_deep {love it} | OceanicNext {love it} | srcery
-colorscheme srcery
+" challenger_deep {love it} | OceanicNext {love it} | srcery | aurora
+colorscheme onedark
 set t_Co=256
 syntax enable
 set background=dark
@@ -410,8 +423,8 @@ let g:NERDTreeHighlightCursorline = 1
 " let NERDTreeExtensionHighlightColor=orangered
 let NERDTreeFileExtensionHighlightFullName=1
 let NERDTreeShowHidden=1
-nnoremap <leader>ft :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
+" nnoremap <leader>ft :NERDTreeToggle<CR>
+" nnoremap <leader>nf :NERDTreeFind<CR>
 
 
 
@@ -524,4 +537,122 @@ let g:vim_matchtag_files = '*.html,*.xml,*.js,*.jsx,*.ts,*.tsx,*.vue,*.svelte,*.
 let g:floaterm_keymap_toggle = '<F12>'
 let g:floaterm_width = 0.85
 let g:floaterm_height = 0.95
+" }}}
+
+" Vim notify {{{
+highlight NotifyERRORBorder guifg=#8A1F1F
+highlight NotifyWARNBorder guifg=#79491D
+highlight NotifyINFOBorder guifg=#4F6752
+highlight NotifyDEBUGBorder guifg=#8B8B8B
+highlight NotifyTRACEBorder guifg=#4F3552
+highlight NotifyERRORIcon guifg=#F70067
+highlight NotifyWARNIcon guifg=#F79000
+highlight NotifyINFOIcon guifg=#A9FF68
+highlight NotifyDEBUGIcon guifg=#8B8B8B
+highlight NotifyTRACEIcon guifg=#D484FF
+highlight NotifyERRORTitle  guifg=#F70067
+highlight NotifyWARNTitle guifg=#F79000
+highlight NotifyINFOTitle guifg=#A9FF68
+highlight NotifyDEBUGTitle  guifg=#8B8B8B
+highlight NotifyTRACETitle  guifg=#D484FF
+highlight link NotifyERRORBody Normal
+highlight link NotifyWARNBody Normal
+highlight link NotifyINFOBody Normal
+highlight link NotifyDEBUGBody Normal
+highlight link NotifyTRACEBody Normal
+" }}}
+
+" Scrollbar {{{
+augroup ScrollbarInit
+  autocmd!
+  autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()
+  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+  autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
+augroup end
+" }}}
+
+" Telescope config {{{
+" nnoremap <leader>tf <cmd>Telescope find_files<CR>
+" }}}
+
+" lsp_signature {{{
+" }}}
+
+" NVim Tree {{{
+" let g:nvim_tree_auto_open = 1 
+lua require'nvim-tree'.setup {}
+let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
+let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
+let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
+let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
+let g:nvim_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
+let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
+let g:nvim_tree_group_empty = 1 " 0 by default, compact folders that only contain a single folder into one node in the file tree
+let g:nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
+let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
+let g:nvim_tree_symlink_arrow = ' >> ' " defaults to ' ➛ '. used as a separator between symlinks' source and target.
+let g:nvim_tree_respect_buf_cwd = 1 "0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
+let g:nvim_tree_create_in_closed_folder = 0 "1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
+let g:nvim_tree_refresh_wait = 500 "1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
+let g:nvim_tree_window_picker_exclude = {
+    \   'filetype': [
+    \     'notify',
+    \     'packer',
+    \     'qf'
+    \   ],
+    \   'buftype': [
+    \     'terminal'
+    \   ]
+    \ }
+" Dictionary of buffer option names mapped to a list of option values that
+" indicates to the window picker that the buffer's window should not be
+" selectable.
+let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 } " List of filenames that gets highlighted with NvimTreeSpecialFile
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 0,
+    \ 'files': 0,
+    \ 'folder_arrows': 0,
+    \ }
+"If 0, do not show the icons for one of 'git' 'folder' and 'files'
+"1 by default, notice that if 'files' is 1, it will only display
+"if nvim-web-devicons is installed and on your runtimepath.
+"if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
+"but this will not work when you set indent_markers (because of UI conflict)
+
+" default will show icon by default if no icon is provided
+" default shows no icon by default
+let g:nvim_tree_icons = {
+    \ 'default': '',
+    \ 'symlink': '',
+    \ 'git': {
+    \   'unstaged': "✗",
+    \   'staged': "✓",
+    \   'unmerged': "",
+    \   'renamed': "➜",
+    \   'untracked': "★",
+    \   'deleted': "",
+    \   'ignored': "◌"
+    \   },
+    \ 'folder': {
+    \   'arrow_open': "",
+    \   'arrow_closed': "",
+    \   'default': "",
+    \   'open': "",
+    \   'empty': "",
+    \   'empty_open': "",
+    \   'symlink': "",
+    \   'symlink_open': "",
+    \   }
+    \ }
+
+nnoremap <leader>ft :NvimTreeToggle<CR>
+nnoremap <leader>nr :NvimTreeRefresh<CR>
+nnoremap <leader>nf :NvimTreeFindFile<CR>
+" NvimTreeOpen, NvimTreeClose, NvimTreeFocus, NvimTreeFindFileToggle, and NvimTreeResize are also available if you need them
+
+set termguicolors " this variable must be enabled for colors to be applied properly
+
+" a list of groups can be found at `:help nvim_tree_highlight`
+highlight NvimTreeFolderIcon guibg=blue
 " }}}
